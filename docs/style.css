@@ -1,26 +1,86 @@
+:root {
+    --primary: #2c3e50;
+    --bg: #f4f7f6;
+    --card-bg: #ffffff;
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f7f6;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg);
     color: #333;
     margin: 0;
-    padding: 20px;
+    padding: 0;
 }
+
 header {
+    background-color: var(--primary);
+    color: white;
     text-align: center;
+    padding: 30px 20px;
     margin-bottom: 40px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
-h1 { color: #2c3e50; }
+
+header h1 { margin: 0 0 10px 0; font-size: 2.5rem; }
+header p { margin: 5px 0; font-size: 1.1rem; opacity: 0.9; }
+header .subtitle { font-size: 0.9rem; opacity: 0.7; }
+
 main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px 40px 20px;
 }
+
 .chart-container {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     width: 45%;
-    min-width: 300px;
+    min-width: 350px;
+}
+
+.table-container {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    width: 100%;
+    overflow-x: auto;
+}
+
+.table-container h2 { margin-top: 0; color: var(--primary); text-align: center; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+tr:hover { background-color: #f1f1f1; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    font-size: 0.9rem;
 }
