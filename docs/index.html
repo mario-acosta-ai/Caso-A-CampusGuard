@@ -9,7 +9,6 @@
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
 <body>
-    <!-- Encabezado Oscuro -->
     <header>
         <h1>🎓 CampusGuard AI</h1>
         <p>Dashboard de Rendimiento: Algoritmos de Búsqueda (BFS vs DFS vs A*)</p>
@@ -17,13 +16,11 @@
     </header>
     
     <main>
-        <!-- Panel de Control -->
         <section class="control-panel">
             <button id="runBtn" disabled>⏳ Cargando motor Python...</button>
-            <p id="statusMsg">Iniciando entorno virtual en el navegador...</p>
+            <p id="statusMsg">Iniciando entorno virtual...</p>
         </section>
 
-        <!-- Contenedores de Gráficos -->
         <section class="charts-grid" id="chartsSection" style="display: none;">
             <div class="card chart-card">
                 <h3>Eficiencia en Memoria</h3>
@@ -35,7 +32,6 @@
             </div>
         </section>
 
-        <!-- Tabla Comparativa (Benchmark) -->
         <section class="card table-card" id="tableSection" style="display: none;">
             <h2>📊 Tabla Benchmark Comparativa</h2>
             <div class="table-responsive">
@@ -49,15 +45,12 @@
                             <th>Camino Encontrado</th>
                         </tr>
                     </thead>
-                    <tbody id="tableBody">
-                        <!-- Los datos se insertan dinámicamente con JS -->
-                    </tbody>
+                    <tbody id="tableBody"></tbody>
                 </table>
             </div>
         </section>
     </main>
 
-    <!-- Pie de página centrado -->
     <footer>
         <p>Universidad Militar Nueva Granada | 2026-2 - Proyecto Integrador Agentes Racionales</p>
     </footer>
