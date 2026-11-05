@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusGuard - Métricas de Búsqueda</title>
+    <title>CampusGuard - Métricas Benchmark</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -13,14 +13,10 @@
         <p>Dashboard de Rendimiento: Algoritmos de Búsqueda (BFS vs DFS vs A*)</p>
         <p class="subtitle">Caso: Ruta óptima de intervención (Tutoría, Bienestar, Ajuste de Materias)</p>
     </header>
-    
-    <main>
-        <!-- Mensaje de carga -->
-        <div id="loading" style="text-align: center; width: 100%; color: #666; font-style: italic;">
-            Cargando métricas desde metrics.json...
-        </div>
 
-        <!-- Contenedores de Gráficos -->
+    <main>
+        <div id="loading">Cargando datos del benchmark...</div>
+        
         <div class="chart-container" id="chartBox1" style="display: none;">
             <canvas id="nodesChart"></canvas>
         </div>
@@ -28,27 +24,24 @@
             <canvas id="timeChart"></canvas>
         </div>
 
-        <!-- Tabla Comparativa (Benchmark) -->
         <div class="table-container" id="tableBox" style="display: none;">
-            <h2>📊 Tabla Benchmark Comparativa</h2>
+            <h2>📊 Tabla de Rendimiento</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Algoritmo</th>
                         <th>Nodos Expandidos</th>
                         <th>Tiempo CPU (ms)</th>
-                        <th>Costo del Camino g(n)</th>
-                        <th>Camino Encontrado</th>
+                        <th>Costo g(n)</th>
+                        <th>Camino de Intervención</th>
                     </tr>
                 </thead>
-                <tbody id="tableBody">
-                    <!-- Los datos se insertan aquí con JavaScript -->
-                </tbody>
+                <tbody id="tableBody"></tbody>
             </table>
         </div>
     </main>
 
-    <footer>
+<footer>
         <p>Universidad Militar Nueva Granada | 2026-2 - Proyecto Integrador Agentes Racionales</p>
     </footer>
 
