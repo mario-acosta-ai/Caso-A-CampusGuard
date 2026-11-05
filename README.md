@@ -18,4 +18,4 @@ Hemos implementado un panel visual interactivo que consume los resultados del be
 ## 🚀 ¿Cómo ejecutar localmente?
 1. Clona el repositorio:
    ```bash
-   git clone https://github.com/TU-USUARIO/CampusGuard-AI.git
+   git clone https://github.com/mario-acosta-ai/Caso-A-CampusGuard
