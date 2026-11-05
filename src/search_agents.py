@@ -1,18 +1,29 @@
 # src/search_agents.py
 from collections import deque
 import heapq
+from problem_model import CampusGuardProblem, State
 
 class Node:
-    def __init__(self, state, parent=None, action=None, path_cost=0):
+    """Nodo del árbol de búsqueda estilo AIMA."""
+    def __init__(self, state: State, parent: Optional['Node'] = None, action: Optional[str] = None, path_cost: int = 0):
         self.state = state
         self.parent = parent
         self.action = action
         self.path_cost = path_cost
 
-    def __lt__(self, other):
+    def __lt__(self, other: 'Node') -> bool:
         return self.path_cost < other.path_cost
 
-def breadth_first_graph_search(problem):
+    def path(self) -> List[str]:
+        """Reconstruye el camino de acciones desde el nodo raíz."""
+        node, path_actions = self, []
+        while node.parent:
+            path_actions.append(node.action)
+            node = node.parent
+        return list(reversed(path_actions))
+
+def breadth_first_graph_search(problem: CampusGuardProblem) -> Optional[Node]:
+    """Búsqueda en Anchura (BFS). Complejidad temporal/espacial: O(b^d)."""
     node = Node(problem.initial)
     if problem.goal_test(node.state): return node
     frontier = deque([node])
@@ -29,7 +40,8 @@ def breadth_first_graph_search(problem):
                 frontier.append(child)
     return None
 
-def depth_first_graph_search(problem):
+def depth_first_graph_search(problem: CampusGuardProblem) -> Optional[Node]:
+    """Búsqueda en Profundidad (DFS). Complejidad temporal: O(b^m), espacial: O(b*m)."""
     node = Node(problem.initial)
     if problem.goal_test(node.state): return node
     frontier = [node]
@@ -46,7 +58,8 @@ def depth_first_graph_search(problem):
                 frontier.append(child)
     return None
 
-def astar_search(problem):
+def astar_search(problem: CampusGuardProblem) -> Optional[Node]:
+    """Búsqueda A* con heurística admisible. Complejidad temporal/espacial: O(b^(d-k_h))."""
     node = Node(problem.initial)
     frontier = [(node.path_cost + problem.h(node), node)]
     explored = set()
