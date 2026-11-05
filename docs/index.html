@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusGuard - Métricas Benchmark</title>
+    <title>CampusGuard - Simulador de Búsqueda</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
 </head>
 <body>
     <header>
@@ -13,19 +14,19 @@
         <p>Dashboard de Rendimiento: Algoritmos de Búsqueda (BFS vs DFS vs A*)</p>
         <p class="subtitle">Caso: Ruta óptima de intervención (Tutoría, Bienestar, Ajuste de Materias)</p>
     </header>
-
+    
     <main>
-        <div id="loading">Cargando datos del benchmark...</div>
-        
-        <div class="chart-container" id="chartBox1" style="display: none;">
-            <canvas id="nodesChart"></canvas>
+        <div class="controls">
+            <button id="runBtn">▶ Ejecutar Benchmark en Vivo</button>
+            <span id="statusMsg">Listo para ejecutar. (Pyodide cargando...)</span>
         </div>
-        <div class="chart-container" id="chartBox2" style="display: none;">
-            <canvas id="timeChart"></canvas>
+
+        <div class="chart-container" id="chartBox" style="display: none;">
+            <canvas id="metricsChart"></canvas>
         </div>
 
         <div class="table-container" id="tableBox" style="display: none;">
-            <h2>📊 Tabla de Rendimiento</h2>
+            <h2>📊 Resultados de la Ejecución</h2>
             <table>
                 <thead>
                     <tr>
@@ -41,10 +42,10 @@
         </div>
     </main>
 
-<footer>
+    <footer>
         <p>Universidad Militar Nueva Granada | 2026-2 - Proyecto Integrador Agentes Racionales</p>
     </footer>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
