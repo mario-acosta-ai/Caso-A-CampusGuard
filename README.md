@@ -2,6 +2,8 @@
 
 **Universidad Militar Nueva Granada**  
 *Proyecto Integrador - Modelado formal y arquitectónico de un Agente Racional*
+**Integrantes**
+*Angie Valentina González Mongui | Juan Guillermo Pulido Moreno | Jonhsef Estiven Acosta Quitián | Omar David Rojas Rodríguez | Mario Alberto Acosta Prieto*
 
 ## 📖 Descripción
 CampusGuard es un agente racional diseñado para mitigar la deserción estudiantil (18% en primeros semestres). Este repositorio contiene la **abstracción formal del entorno** a un espacio de estados discreto y determinista, junto con la implementación de algoritmos de búsqueda no informada (BFS, DFS) e informada (A*) para encontrar la ruta óptima de intervención (Tutoría, Bienestar o Ajuste de Materias).
