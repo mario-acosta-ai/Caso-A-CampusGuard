@@ -1,0 +1,2 @@
+# Este proyecto utiliza la librería estándar de Python 3.10+
+# No requiere dependencias externas de pip.
