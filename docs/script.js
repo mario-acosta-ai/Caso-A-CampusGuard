@@ -25,9 +25,10 @@ async function initPyodide() {
         
         statusMsg.innerText = "Descargando archivos .py desde el repositorio...";
         
+        // Añadimos ?v=2 para forzar al navegador a descargar la versión más reciente
         const [problemResponse, searchResponse] = await Promise.all([
-            fetch(`${BASE_RAW_URL}problem.py`),
-            fetch(`${BASE_RAW_URL}search.py`)
+            fetch(`${BASE_RAW_URL}problem.py?v=2`),
+            fetch(`${BASE_RAW_URL}search.py?v=2`)
         ]);
 
         if (!problemResponse.ok || !searchResponse.ok) {
