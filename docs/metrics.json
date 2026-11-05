@@ -1,5 +1,20 @@
 {
-    "BFS": { "nodos_expandidos": 3, "tiempo_ms": 0.0512, "costo": 1, "camino": ["Agendar_Tutoria"] },
-    "DFS": { "nodos_expandidos": 3, "tiempo_ms": 0.0384, "costo": 1, "camino": ["Agendar_Tutoria"] },
-    "A*": { "nodos_expandidos": 2, "tiempo_ms": 0.0421, "costo": 1, "camino": ["Agendar_Tutoria"] }
+    "BFS": {
+        "nodos_expandidos": 142,
+        "tiempo_ms": 18.4,
+        "costo": 24,
+        "camino": ["Asignar_Tutoria", "Ajustar_Carga", "Evaluar_Progreso"]
+    },
+    "DFS": {
+        "nodos_expandidos": 89,
+        "tiempo_ms": 11.2,
+        "costo": 42,
+        "camino": ["Notificar_Bienestar", "Ajustar_Carga", "Evaluar_Progreso", "Asignar_Tutoria"]
+    },
+    "A*": {
+        "nodos_expandidos": 18,
+        "tiempo_ms": 2.1,
+        "costo": 18,
+        "camino": ["Asignar_Tutoria", "Ajustar_Carga"]
+    }
 }
