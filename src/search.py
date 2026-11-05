@@ -37,7 +37,7 @@ def bfs(problem: CampusGuardProblem) -> Node:
         for action in problem.actions(node.state):
             child_s = problem.result(node.state, action)
             if child_s not in explored:
-                child = Node(child_s, node, action, problem.path_cost(node.path_cost, action))
+               child = Node(child_s, node, action, problem.path_cost(node.path_cost, node.state, action, child_s))
                 if problem.goal_test(child.state): return child
                 frontier.append(child)
     return None
@@ -53,7 +53,7 @@ def dfs(problem: CampusGuardProblem) -> Node:
         for action in problem.actions(node.state):
             child_s = problem.result(node.state, action)
             if child_s not in explored:
-                child = Node(child_s, node, action, problem.path_cost(node.path_cost, action))
+                child = Node(child_s, node, action, problem.path_cost(node.path_cost, node.state, action, child_s))
                 if problem.goal_test(child.state): return child
                 frontier.append(child)
     return None
@@ -71,6 +71,6 @@ def a_star(problem: CampusGuardProblem) -> Node:
         for action in problem.actions(node.state):
             child_s = problem.result(node.state, action)
             if child_s not in explored:
-                child = Node(child_s, node, action, problem.path_cost(node.path_cost, action))
+                child = Node(child_s, node, action, problem.path_cost(node.path_cost, node.state, action, child_s))
                 heapq.heappush(frontier, (child.path_cost + problem.h(child.state), child))
     return None
