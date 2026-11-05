@@ -1,2 +1,4 @@
-# Este proyecto utiliza la librería estándar de Python 3.10+
-# No requiere dependencias externas de pip.
+aima-python==0.1.0
+pandas==2.1.4
+jupyter==1.0.0
+notebook==7.0.6
