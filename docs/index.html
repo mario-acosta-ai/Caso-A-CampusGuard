@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusGuard - Simulador de Búsqueda</title>
+    <title>CampusGuard - Métricas de Búsqueda</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
@@ -16,28 +16,40 @@
     </header>
     
     <main>
-        <div class="controls">
-            <button id="runBtn">▶ Ejecutar Benchmark en Vivo</button>
-            <span id="statusMsg">Listo para ejecutar. (Pyodide cargando...)</span>
+        <!-- Panel de Control -->
+        <div class="control-panel">
+            <button id="runBtn" disabled>⏳ Cargando motor Python...</button>
+            <p id="statusMsg">Iniciando entorno virtual...</p>
         </div>
 
-        <div class="chart-container" id="chartBox" style="display: none;">
-            <canvas id="metricsChart"></canvas>
+        <!-- Contenedores de Gráficos -->
+        <div class="charts-grid" id="chartsSection" style="display: none;">
+            <div class="card chart-card">
+                <h3>Eficiencia en Memoria</h3>
+                <canvas id="nodesChart"></canvas>
+            </div>
+            <div class="card chart-card">
+                <h3>Rendimiento Temporal</h3>
+                <canvas id="timeChart"></canvas>
+            </div>
         </div>
 
-        <div class="table-container" id="tableBox" style="display: none;">
-            <h2>📊 Resultados de la Ejecución</h2>
+        <!-- Tabla Comparativa -->
+        <div class="card table-card" id="tableSection" style="display: none;">
+            <h2>📊 Tabla Benchmark Comparativa</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Algoritmo</th>
                         <th>Nodos Expandidos</th>
                         <th>Tiempo CPU (ms)</th>
-                        <th>Costo g(n)</th>
-                        <th>Camino de Intervención</th>
+                        <th>Costo del Camino g(n)</th>
+                        <th>Camino Encontrado</th>
                     </tr>
                 </thead>
-                <tbody id="tableBody"></tbody>
+                <tbody id="tableBody">
+                    <!-- Datos dinámicos -->
+                </tbody>
             </table>
         </div>
     </main>
@@ -45,7 +57,7 @@
     <footer>
         <p>Universidad Militar Nueva Granada | 2026-2 - Proyecto Integrador Agentes Racionales</p>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
