@@ -19,6 +19,11 @@ Hemos implementado un panel visual interactivo que consume los resultados del be
 2. **DFS (Depth-First Search):** Agente de búsqueda no informada. Ahorra memoria \(O(b \cdot m)\), pero no garantiza optimalidad y puede atascarse en ramas infinitas.
 3. **A* (A-Star):** Agente de búsqueda informada. Utiliza una **heurística admisible \(h(n)\)** (costo mínimo restante) para podar el árbol de búsqueda y encontrar la ruta más económica \(O(b^{d-k_h})\).
 
+## 🚀 ¿Cómo ejecutar localmente?
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/mario-acosta-ai/Caso-A-CampusGuard
+
 ## 🗂️ Estructura del Proyecto
 ```text
 CampusGuard-AI/
@@ -35,8 +40,3 @@ CampusGuard-AI/
 ├── CampusGuard_benchmark.ipynb  # Notebook de ejecución paso a paso
 ├── requirements.txt
 └── README.md
-
-## 🚀 ¿Cómo ejecutar localmente?
-1. Clona el repositorio:
-   ```bash
-   git clone https://github.com/mario-acosta-ai/Caso-A-CampusGuard
