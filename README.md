@@ -2,6 +2,7 @@
 
 **Universidad Militar Nueva Granada**  
 *Proyecto Integrador - Modelado formal y arquitectónico de un Agente Racional*
+
 **Integrantes**
 *Angie Valentina González Mongui | Juan Guillermo Pulido Moreno | Jonhsef Estiven Acosta Quitián | Omar David Rojas Rodríguez | Mario Alberto Acosta Prieto*
 
