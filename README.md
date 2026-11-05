@@ -8,7 +8,7 @@ CampusGuard es un agente racional diseñado para mitigar la deserción estudiant
 
 ## 📊 Dashboard de Métricas (GitHub Pages)
 Hemos implementado un panel visual interactivo que consume los resultados del benchmark para comparar la eficiencia de los algoritmos.
-👉 **[Ver Dashboard en vivo aquí](https://TU-USUARIO.github.io/CampusGuard-AI/](https://mario-acosta-ai.github.io/Caso-A-CampusGuard/)** *(Reemplaza TU-USUARIO con tu nombre de usuario de GitHub)*
+👉 **[Ver Dashboard en vivo aquí] https://TU-USUARIO.github.io/CampusGuard-AI/](https://mario-acosta-ai.github.io/Caso-A-CampusGuard/
 
 ## 🗂️ Estructura del Proyecto
 - `src/`: Contiene la lógica del agente, la clase del problema (AIMA) y los algoritmos.
