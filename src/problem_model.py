@@ -1,9 +1,17 @@
 # src/problem_model.py
+from typing import Tuple, List, Optional
+
+State = Tuple[str, int, str]
 
 class CampusGuardProblem:
-    def __init__(self, initial, goal=None):
+    """
+    Modelado formal del problema de búsqueda para CampusGuard.
+    Define el espacio de estados, acciones, transiciones, meta y costos.
+    """
+    def __init__(self, initial: State, goal: Optional[State] = None) -> None:
         self.initial = initial
         self.goal = goal
+        # Costos en horas según el documento Actividad 1 Proyecto Integrador Modelado formal y arquitectónico de un Agente Racional
         self.action_costs = {
             'Asignar_Tutoria': 12,
             'Notificar_Bienestar': 24,
@@ -11,7 +19,8 @@ class CampusGuardProblem:
             'Evaluar_Progreso': 4
         }
 
-    def actions(self, state):
+    def actions(self, state: State) -> List[str]:
+        """Retorna las acciones válidas para un estado dado."""
         riesgo, inasistencia, estado_int = state
         accs = []
         if estado_int == 'Sin_Accion':
@@ -24,7 +33,8 @@ class CampusGuardProblem:
             accs.append('Evaluar_Progreso')
         return accs
 
-    def result(self, state, action):
+    def result(self, state: State, action: str) -> State:
+        """Modelo de transición: Retorna el nuevo estado tras aplicar la acción."""
         riesgo, inasistencia, estado_int = state
         if action == 'Asignar_Tutoria':
             return ('Medio', max(0, inasistencia - 10), 'Tutoria_Asignada')
@@ -37,22 +47,29 @@ class CampusGuardProblem:
             return (nuevo_riesgo, inasistencia, 'Recuperado')
         return state
 
-    def goal_test(self, state):
+    def goal_test(self, state: State) -> bool:
+        """Prueba de meta: Verifica si el estudiante está recuperado."""
         riesgo, inasistencia, estado_int = state
         return riesgo == "Bajo" and (estado_int == "Recuperado" or estado_int == "Carga_Reducida")
 
-    def path_cost(self, c, state1, action, state2):
+    def path_cost(self, c: int, state1: State, action: str, state2: State) -> int:
+        """Función de costo: Suma el costo de la acción al costo acumulado."""
         return c + self.action_costs.get(action, 1)
 
-    def h(self, node):
-        # Heurística admisible definida en el documento
-        riesgo, inasistencia, estado_int = node.state if hasattr(node, 'state') else node
-        if self.goal_test(riesgo, inasistencia, estado_int) if isinstance(riesgo, tuple) else self.goal_test((riesgo, inasistencia, estado_int)):
-            return 0
+    def h(self, node) -> int:
+        """
+        Heurística admisible h(n): Estima el costo mínimo restante sin sobreestimarlo.
+        Se basa en las horas mínimas requeridas para reducir el riesgo.
+        """
+        state = node.state if hasattr(node, 'state') else node
+        riesgo, inasistencia, estado_int = state
         
+        if self.goal_test(state):
+            return 0
+            
         costo_estimado = 0
         if riesgo == 'Alto':
-            costo_estimado += 12
+            costo_estimado += 12 # Mínimo para bajar el riesgo
         if estado_int != 'Carga_Reducida':
-            costo_estimado += 6
+            costo_estimado += 6  # Mínimo para ajustar carga
         return costo_estimado
