@@ -26,7 +26,7 @@ Hemos implementado un panel visual interactivo que ejecuta el motor de Python di
 3. **A* (A-Star):** Agente de búsqueda informada. Utiliza una **heurística admisible \(h(n)\)** (costo mínimo restante) para podar el árbol de búsqueda y garantizar la ruta más económica \(O(b^{d-k_h})\), encontrando la solución óptima de 28 horas.
 
 ## 🚀 ¿Cómo ejecutar localmente?
-1. Clona el repositorio:
+1. Descarga o clona el repositorio:
    ```bash
    git clone https://github.com/TU-USUARIO/CampusGuard-AI.git
 
