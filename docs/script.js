@@ -14,7 +14,7 @@ const GITHUB_REPO = 'Caso-A-CampusGuard';
 const GITHUB_BRANCH = 'main'; 
 
 // Ahora el motor está en la raíz, no en src/
-const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/CampusGuard_engine.py`;
+const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/campusguard_engine.py`;
 
 async function initPyodide() {
     try {
