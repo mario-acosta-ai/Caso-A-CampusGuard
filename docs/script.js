@@ -1,9 +1,6 @@
 // ==========================================
 // CAMPUSGUARD AI - DASHBOARD DE RENDIMIENTO
 // ==========================================
-// Este script carga Pyodide (Python en WebAssembly) y ejecuta
-// los archivos .py de la carpeta src/ para mostrar las métricas.
-
 
 let pyodide;
 const runBtn = document.getElementById('runBtn');
@@ -11,43 +8,32 @@ const statusMsg = document.getElementById('statusMsg');
 let chartNodos = null;
 let chartTiempos = null;
 
-// ⚠️ VERIFICA ESTOS DATOS ⚠️
+// CONFIGURACIÓN GITHUB
 const GITHUB_USER = 'mario-acosta-ai';
 const GITHUB_REPO = 'Caso-A-CampusGuard';
-const GITHUB_BRANCH = 'main'; // Si tu rama es 'master', cámbialo aquí
+const GITHUB_BRANCH = 'main'; 
 
-const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/src/`;
+// Ahora el motor está en la raíz, no en src/
+const BASE_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USER}/${GITHUB_REPO}/${GITHUB_BRANCH}/CampusGuard_engine.py`;
 
 async function initPyodide() {
     try {
         statusMsg.innerText = "Descargando entorno Python... (esto toma unos segundos)";
         pyodide = await loadPyodide();
         
-        statusMsg.innerText = "Descargando archivos .py desde el repositorio...";
+        statusMsg.innerText = "Descargando motor desde el repositorio...";
         
-        // Añadimos ?v=3 para forzar la descarga de la versión más reciente
-        const [problemResponse, searchResponse] = await Promise.all([
-            fetch(`${BASE_RAW_URL}problem.py?v=3`),
-            fetch(`${BASE_RAW_URL}search.py?v=3`)
-        ]);
+        // Añadimos ?v=4 para forzar la recarga de caché
+        const response = await fetch(`${BASE_RAW_URL}?v=4`);
 
-        if (!problemResponse.ok || !searchResponse.ok) {
-            throw new Error(`Error HTTP: ${problemResponse.status} / ${searchResponse.status}. Verifica que los archivos existan en src/ y que la rama sea correcta.`);
+        if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}. Verifica que campusguard_engine.py esté en la raíz.`);
         }
 
-        const problemCode = await problemResponse.text();
-        const searchCode = await searchResponse.text();
+        const engineCode = await response.text();
 
         // Escribir en el sistema de archivos de Pyodide
-        pyodide.FS.writeFile('problem.py', problemCode);
-        pyodide.FS.writeFile('search.py', searchCode);
-        
-        // IMPORTANTE: Añadir el directorio actual al path de Python para que encuentre los módulos
-        pyodide.runPython(`
-import sys
-if '/' not in sys.path:
-    sys.path.append('/')
-        `);
+        pyodide.FS.writeFile('campusguard_engine.py', engineCode);
         
         runBtn.disabled = false;
         runBtn.innerText = "▶ Ejecutar Benchmark";
@@ -73,24 +59,21 @@ runBtn.addEventListener('click', async () => {
         const executionScript = `
 import time
 import json
-from problem import CampusGuardProblem
-from search import bfs, dfs, a_star
+from campusguard_engine import CampusGuardProblem, breadth_first_search, depth_first_search, astar_search
 
-s0 = ('Alto', 35, 'Sin_Accion')
-problem = CampusGuardProblem(s0)
-algos = {"BFS": bfs, "DFS": dfs, "A*": a_star}
+s0 = ('Alto', 35, 2, 'Sin_Intervencion')
+problem = CampusGuardProblem(initial=s0)
+algos = {"BFS": breadth_first_search, "DFS": depth_first_search, "A*": astar_search}
 results = {}
 
 for name, func in algos.items():
-    start = time.perf_counter()
-    node = func(problem)
-    end = time.perf_counter()
+    nodo, exp, t = func(problem)
     
     results[name] = {
-        "nodos": 142 if name == "BFS" else (89 if name == "DFS" else 18),
-        "tiempo_ms": 18.4 if name == "BFS" else (11.2 if name == "DFS" else 2.1),
-        "costo": 24 if name == "BFS" else (42 if name == "DFS" else 18),
-        "camino": node.path() if node else []
+        "nodos": exp,
+        "tiempo_ms": round(t, 3),
+        "costo": nodo.path_cost if nodo else -1,
+        "camino": nodo.solution() if nodo else []
     }
 json.dumps(results)
         `;
@@ -102,7 +85,6 @@ json.dumps(results)
         statusMsg.innerText = "✅ Ejecución finalizada correctamente.";
         statusMsg.style.color = "#27ae60";
     } catch (error) {
-        // Aquí capturamos el error real de Python y lo mostramos en pantalla
         console.error("Error detallado de Python:", error);
         statusMsg.innerText = "❌ Error: " + (error.message || error);
         statusMsg.style.color = "#e74c3c";
