@@ -41,9 +41,10 @@ CampusGuard-AI/
 ├── tests/                        
 │   └── test_campusguard.py     # Pruebas unitarias de admisibilidad y consistencia
 ├── .gitignore
-├── benchmark.py                # Script de benchmarking comparativo
 ├── CampusGuard_Benchmark.ipynb # Cuaderno experimental con tablas y gráficos
-├── campusguard_engine.py       # Motor principal (Clase Problem + Algoritmos)
+├── agente_conocimiento_general.py #Motor de conocimientos para laboratorio de agentes de conocimiento
+├── ampusguard_engine.py       # Motor principal (Clase Problem + Algoritmos)
 ├── generar_notebook.py         # Script generador del cuaderno Jupyter
+├── laboratorio_agente_conocimiento.ipynb #Cuaderno de agente de laboratorio de conocimiento
 ├── README.md
 └── requirements.txt
